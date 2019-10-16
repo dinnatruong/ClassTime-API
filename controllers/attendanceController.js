@@ -9,8 +9,7 @@ exports.createCourseAttendance = function(req, res) {
         }
       
         // Create course entry
-        const courseCode = req.body.code ? req.body.code : null
-        mySQL.query(Course.createCourse(), [req.body.title, courseCode, new Date()], (err, result) => {
+        mySQL.query(Course.createCourse(), [req.body.title, req.body.code, new Date()], (err, result) => {
             if (err) {
                 res.status(400).json({result: 'Error. Please try again.'})
             }
@@ -36,7 +35,7 @@ exports.createCourseAttendance = function(req, res) {
 };
 
 exports.getAttendance = function(req, res) {
-    mySQL.query(Attendance.getAttendanceByUser(), req.query.id_student, (err, result) => {
+    mySQL.query(Attendance.getAttendanceByPhone(), req.query.phone_number, (err, result) => {
         if (err) {
             res.status(400).json({result: 'Error. Please try again.'})
         }

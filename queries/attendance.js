@@ -9,13 +9,13 @@ class Attendance {
         return query
     }
 
-    static getAttendanceByUser() {
+    static getAttendanceByPhone() {
         let query =
         `
             SELECT a.id_attendance, a.id_student, a.attended, a.missed, a.created_date AS attendance_created_date,
-             c.id_course, c.title, c.code, c.created_date AS course_created_date
+                c.id_course, c.title, c.code, c.created_date AS course_created_date
                 FROM classtime.attendance a, classtime.course c
-                WHERE id_student = ? AND a.id_course = c.id_course
+                WHERE a.id_course = c.id_course AND a.id_student = (SELECT id_student FROM classtime.student WHERE phone_number = ?)
         `
         return query
     }
