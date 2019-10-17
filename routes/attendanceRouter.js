@@ -6,5 +6,6 @@ router.route('/')
     .post(attendanceController.createCourseAttendance)
     .get(attendanceController.getAttendance)
     .patch(attendanceController.updateAttendance)
+    .delete(attendanceController.deleteAttendance)
 
 module.exports = router

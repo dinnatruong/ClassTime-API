@@ -67,3 +67,13 @@ exports.updateAttendance = function(req, res) {
         });
     })
 };
+
+exports.deleteAttendance = function(req, res) {
+    mySQL.query(Attendance.deleteAttendanceById(), req.query.id_attendance, (err, result) => {
+        if (err) {
+            res.status(400).json({result: 'Error. Please try again.'})
+        }
+        
+        res.status(200).json({result: "Success. Attendance deleted."})
+    });
+};

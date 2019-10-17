@@ -29,6 +29,15 @@ class Attendance {
         `
         return query
     }
+
+    static deleteAttendanceById() {
+        let query =
+        `
+            DELETE FROM classtime.attendance
+                WHERE id_attendance = ?
+        `
+        return query
+    }
 }
 
 module.exports = Attendance
